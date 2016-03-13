@@ -1,5 +1,9 @@
 <?php namespace Twitter\Api;
 
+/**
+ * Interface RequestInterface
+ * @package Twitter\Api
+ */
 interface RequestInterface {
 
     function getOperation();
@@ -11,5 +15,11 @@ interface RequestInterface {
     function getHttpMethod();
 
     function execute();
+
+    function getVersion();
+
+    function getFormat();
+
+    function getResource();
 
 }

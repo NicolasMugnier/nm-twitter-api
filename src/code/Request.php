@@ -1,25 +1,58 @@
 <?php namespace Twitter\Api;
 
+use \GuzzleHttp\Exception\RequestException;
+
+/**
+ * Class Request
+ * @package Twitter\Api
+ */
 abstract class Request implements RequestInterface {
 
     const baseUrl = 'https://api.twitter.com';
 
+    /**
+     * @var Client
+     */
     protected $client;
 
+    /**
+     * @var array
+     */
     protected $query = array();
 
+    /**
+     * @var string
+     */
     protected $oauthConsumerKey;
 
+    /**
+     * @var string
+     */
     protected $oauthConsumerSecret;
 
+    /**
+     * @var string
+     */
     protected $oauthNonce;
 
+    /**
+     * @var string
+     */
     protected $oauthToken;
 
+    /**
+     * @var string
+     */
     protected $oauthTokenSecret;
 
-    protected $timestamp = null;
+    /**
+     * @var string
+     */
+    protected $timestamp;
 
+    /**
+     * @return Client
+     */
     public function getClient(){
         return $this->client;
     }
@@ -28,24 +61,41 @@ abstract class Request implements RequestInterface {
         $this->client = new Client();
     }
 
+    /**
+     * @param $oauthConsumerKey
+     * @return $this
+     */
     public function setOAuthConsumerKey($oauthConsumerKey){
         $this->oauthConsumerKey = $oauthConsumerKey;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getOAuthConsumerKey(){
         return $this->oauthConsumerKey;
     }
 
+    /**
+     * @param string $oauthConsumerSecret
+     * @return $this
+     */
     public function setOAuthConsumerSecret($oauthConsumerSecret){
         $this->oauthConsumerSecret = $oauthConsumerSecret;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getOAuthConsumerSecret(){
         return $this->oauthConsumerSecret;
     }
 
+    /**
+     * @return string
+     */
     public function getOAuthNonce(){
         if($this->oauthNonce === null){
             $this->oauthNonce = base64_encode('5BezU2SwNnWz7dH4JG7XgSN0CpA7srgRp0kiCcFlBu8GhDMdqq'.time());
@@ -53,6 +103,98 @@ abstract class Request implements RequestInterface {
         return $this->oauthNonce;
     }
 
+    /**
+     * @return string
+     */
+    protected function getOAuthSignatureMethod(){
+        return 'HMAC-SHA1';
+    }
+
+    /**
+     * @return int|string
+     */
+    protected function getOAuthTimestamp(){
+        if($this->timestamp === null){
+            $this->timestamp = time();
+        }
+
+        return $this->timestamp;
+    }
+
+    /**
+     * @param $oauthToken
+     * @return $this
+     */
+    public function setOAuthToken($oauthToken){
+        $this->oauthToken = $oauthToken;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOAuthToken(){
+        return $this->oauthToken;
+    }
+
+    /**
+     * @param $oauthTokenSecret
+     * @return $this
+     */
+    public function setOAuthTokenSecret($oauthTokenSecret){
+        $this->oauthTokenSecret = $oauthTokenSecret;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOAuthTokenSecret(){
+        return $this->oauthTokenSecret;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getOAuthVersion(){
+        return '1.0';
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(){
+
+        $url = $this->getBaseUrl();
+
+        if(count($this->query) > 0){
+
+            $tmp = [];
+            foreach($this->query as $param => $value){
+                $tmp[] = $param.'='.rawurlencode($value);
+            }
+
+            $url .= '?'.implode('&', $tmp);
+
+        }
+
+        return $url;
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl(){
+
+        return $url = self::baseUrl.'/'.$this->getVersion().'/'.$this->getResource().'/'.$this->getOperation().'.'.$this->getFormat();
+
+    }
+
+    /**
+     * @return string
+     * @link https://dev.twitter.com/oauth/overview/creating-signatures
+     */
     protected function getOAuthSignature(){
 
         $params = [];
@@ -79,44 +221,49 @@ abstract class Request implements RequestInterface {
 
     }
 
+    /**
+     * @return string
+     */
     protected function getSigninKey(){
 
         return rawurlencode($this->getOAuthConsumerSecret()).'&'.rawurlencode($this->getOAuthTokenSecret());
 
     }
 
-    protected function getOAuthSignatureMethod(){
-        return 'HMAC-SHA1';
-    }
+    public function execute(){
 
-    protected function getOAuthTimestamp(){
-        if($this->timestamp === null){
-            $this->timestamp = time();
+        try {
+
+            $method = strtolower($this->getHttpMethod());
+
+            $oauth = 'OAuth ';
+            $oauth .= 'oauth_consumer_key="'.$this->getOAuthConsumerKey().'", ';
+            $oauth .= 'oauth_nonce="'.$this->getOAuthNonce().'", ';
+            $oauth .= 'oauth_signature="'.$this->getOAuthSignature().'", ';
+            $oauth .= 'oauth_signature_method="'.$this->getOAuthSignatureMethod().'", ';
+            $oauth .= 'oauth_timestamp="'.$this->getOAuthTimestamp().'", ';
+            $oauth .= 'oauth_token="'.$this->getOAuthToken().'", ';
+            $oauth .= 'oauth_version="'.$this->getOAuthVersion().'"';
+
+            return $this->getClient()->$method($this->getUrl(),
+                [
+                    'headers' => [
+                        'Authorization' => $oauth
+                    ]
+                ]
+            );
+
+        }catch(RequestException $e){
+
+            $errorMessage = "\n".'----------[REQUEST]----------'."\n";
+            $errorMessage .= $e->getRequest();
+            if ($e->hasResponse()) {
+                $errorMessage .= '----------[RESPONSE]----------'."\n";
+                $errorMessage .= $e->getResponse() . "\n";
+            }
+            echo $errorMessage;die();
         }
 
-        return $this->timestamp;
-    }
-
-    public function setOAuthToken($oauthToken){
-        $this->oauthToken = $oauthToken;
-        return $this;
-    }
-
-    public function getOAuthToken(){
-        return $this->oauthToken;
-    }
-
-    public function setOAuthTokenSecret($oauthTokenSecret){
-        $this->oauthTokenSecret = $oauthTokenSecret;
-        return $this;
-    }
-
-    public function getOAuthTokenSecret(){
-        return $this->oauthTokenSecret;
-    }
-
-    protected function getOAuthVersion(){
-        return '1.0';
     }
 
 }
