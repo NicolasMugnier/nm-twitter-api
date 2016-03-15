@@ -255,7 +255,9 @@ abstract class Request implements RequestInterface {
 
         }catch(RequestException $e){
 
-            $errorMessage = "\n".'----------[REQUEST]----------'."\n";
+            $errorMessage = '---------[MESSAGE]---------'."\n";
+            $errorMessage .= $e->getMessage()."\n";
+            $errorMessage .= "\n".'----------[REQUEST]----------'."\n";
             $errorMessage .= $e->getRequest();
             if ($e->hasResponse()) {
                 $errorMessage .= '----------[RESPONSE]----------'."\n";
