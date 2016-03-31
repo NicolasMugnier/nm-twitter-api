@@ -263,7 +263,7 @@ abstract class Request implements RequestInterface {
                 $errorMessage .= '----------[RESPONSE]----------'."\n";
                 $errorMessage .= $e->getResponse() . "\n";
             }
-            echo $errorMessage;die();
+            throw new \Exception($errorMessage);
         }
 
     }
