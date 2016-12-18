@@ -58,7 +58,7 @@ abstract class Request implements RequestInterface {
     }
 
     public function __construct(
-        \Twitter\Api\Client $client
+        \GuzzleHttp\Client $client
     ){
         $this->client = $client;
     }
