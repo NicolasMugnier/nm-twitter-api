@@ -57,8 +57,10 @@ abstract class Request implements RequestInterface {
         return $this->client;
     }
 
-    public function __construct(){
-        $this->client = new Client();
+    public function __construct(
+        \Twitter\Api\Client $client
+    ){
+        $this->client = $client;
     }
 
     /**
