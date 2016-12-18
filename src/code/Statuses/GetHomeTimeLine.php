@@ -39,7 +39,7 @@ class GetHomeTimeLine extends Base {
 
     public function getOperation()
     {
-        'home_timeline';
+        return 'home_timeline';
     }
 
     public function getHttpMethod()
