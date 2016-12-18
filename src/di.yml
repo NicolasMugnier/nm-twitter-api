@@ -1,0 +1,27 @@
+services:
+ http_client:
+  class: \GuzzleHttp\Client
+
+ twitter_api_collections_get_list:
+  class: \Twitter\Api\Collections\GetList
+  arguments: ['@http_client']
+
+ twitter_api_collections_get_show:
+  class: \Twitter\Api\Collections\GetShow
+  arguments: ['@http_client']
+
+ twitter_api_collections_post_create:
+  class: \Twitter\Api\Collections\PostCreate
+  arguments: ['@http_client']
+
+ twitter_api_collections_post_destroy:
+  class: \Twitter\Api\Collections\PostDestroy
+  arguments: ['@http_client']
+
+ twitter_api_collections_post_entries_add:
+  class: \Twitter\Api\Collections\PostEntriesAdd
+  arguments: ['@http_client']
+
+ twitter_api_friends_get_ids:
+  class: \Twitter\Api\Friends\GetIds
+  arguments: ['@http_client']
