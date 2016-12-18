@@ -25,3 +25,15 @@ services:
  twitter_api_friends_get_ids:
   class: \Twitter\Api\Friends\GetIds
   arguments: ['@http_client']
+
+ twitter_api_statuses_post_update:
+  class: \Twitter\Api\Statuses\PostUpdate
+  arguments: ['@http_client']
+
+ twitter_api_statuses_get_home_timeline:
+  class: \Twitter\Api\Statuses\GetHomeTimeLine
+  arguments: ['@http_client']
+
+ twitter_api_statuses_get_lookup:
+  class: \Twitter\Api\Statuses\GetLookup
+  arguments: ['@http_client']
