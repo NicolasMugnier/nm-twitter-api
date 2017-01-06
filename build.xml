@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YourProject" default="build" basedir=".">
+
+    <target name="build" depends="build-common" />
+
+    <target name="build-common" depends="composer" />
+
+    <target name="composer" depends="composer-install,composer-update" description="Install or update dependencies" />
+
+    <target name="composer.check">
+        <condition property="composer.exist">
+            <available file="${project.basedir}/vendor" type="dir" />
+        </condition>
+    </target>
+
+    <target name="composer-install" depends="composer.check" unless="composer.exist" description="Installing dependencies">
+        <echo>Installing dependencies</echo>
+        <exec executable="composer">
+            <arg value="install" />
+            <arg value="--no-dev" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+
+    <target name="composer-update" depends="composer.check" if="composer.exist" description="Updating dependencies">
+        <echo>Updating dependencies</echo>
+        <exec executable="composer">
+            <arg value="update" />
+            <arg value="--no-dev" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+
+</project>
