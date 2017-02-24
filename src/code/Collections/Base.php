@@ -1,8 +1,8 @@
-<?php namespace Twitter\Api\Collections;
+<?php namespace NicolasMugnier\Twitter\Api\Collections;
 
 /**
  * Class Base
- * @package Twitter\Api\Collections
+ * @package NicolasMugnier\Twitter\Api\Collections
  */
 abstract class Base extends \Twitter\Api\Request {
 

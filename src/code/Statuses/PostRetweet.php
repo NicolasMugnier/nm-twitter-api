@@ -1,8 +1,8 @@
-<?php namespace Twitter\Api\Statuses;
+<?php namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
  * Class PostRetweet
- * @package Twitter\Api\Statuses
+ * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/post/statuses/retweet/%3Aid
  */
 class PostRetweet extends Base {

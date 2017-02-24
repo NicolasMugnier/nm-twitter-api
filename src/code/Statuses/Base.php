@@ -1,10 +1,10 @@
-<?php namespace Twitter\Api\Statuses;
+<?php namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
  * Class Base
- * @package Twitter\Api\Statuses
+ * @package NicolasMugnier\Twitter\Api\Statuses
  */
-abstract class Base extends \Twitter\Api\Request {
+abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
 
     /**
      * @return string

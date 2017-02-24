@@ -1,4 +1,4 @@
-<?php namespace Twitter\Api\Statuses;
+<?php namespace NicolasMugnier\Twitter\Api\Statuses;
 
 class GetHomeTimeLine extends Base {
 

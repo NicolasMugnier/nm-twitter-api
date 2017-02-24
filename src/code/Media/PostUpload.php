@@ -1,8 +1,8 @@
-<?php namespace Twitter\Api\Media;
+<?php namespace NicolasMugnier\Twitter\Api\Media;
 
 /**
  * Class PostUpload
- * @package Twitter\Api\Media
+ * @package NicolasMugnier\Twitter\Api\Media
  * @link https://dev.twitter.com/rest/reference/post/media/upload
  */
 class PostUpload extends Base {

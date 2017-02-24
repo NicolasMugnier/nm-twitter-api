@@ -3,45 +3,45 @@ services:
   class: \GuzzleHttp\Client
 
  twitter_api_collections_get_list:
-  class: \Twitter\Api\Collections\GetList
+  class: \NicolasMugnier\Twitter\Api\Collections\GetList
   arguments: ['@http_client']
 
  twitter_api_collections_get_show:
-  class: \Twitter\Api\Collections\GetShow
+  class: \NicolasMugnier\Twitter\Api\Collections\GetShow
   arguments: ['@http_client']
 
  twitter_api_collections_post_create:
-  class: \Twitter\Api\Collections\PostCreate
+  class: \NicolasMugnier\Twitter\Api\Collections\PostCreate
   arguments: ['@http_client']
 
  twitter_api_collections_post_destroy:
-  class: \Twitter\Api\Collections\PostDestroy
+  class: \NicolasMugnier\Twitter\Api\Collections\PostDestroy
   arguments: ['@http_client']
 
  twitter_api_collections_post_entries_add:
-  class: \Twitter\Api\Collections\PostEntriesAdd
+  class: \NicolasMugnier\Twitter\Api\Collections\PostEntriesAdd
   arguments: ['@http_client']
 
  twitter_api_friends_get_ids:
-  class: \Twitter\Api\Friends\GetIds
+  class: \NicolasMugnier\Twitter\Api\Friends\GetIds
   arguments: ['@http_client']
 
  twitter_api_statuses_post_update:
-  class: \Twitter\Api\Statuses\PostUpdate
+  class: \NicolasMugnier\Twitter\Api\Statuses\PostUpdate
   arguments: ['@http_client']
 
  twitter_api_statuses_get_home_timeline:
-  class: \Twitter\Api\Statuses\GetHomeTimeLine
+  class: \NicolasMugnier\Twitter\Api\Statuses\GetHomeTimeLine
   arguments: ['@http_client']
 
  twitter_api_statuses_get_lookup:
-  class: \Twitter\Api\Statuses\GetLookup
+  class: \NicolasMugnier\Twitter\Api\Statuses\GetLookup
   arguments: ['@http_client']
 
  twitter_api_statuses_get_user_timeline:
-  class: \Twitter\Api\Statuses\GetUserTimeLine
+  class: \NicolasMugnier\Twitter\Api\Statuses\GetUserTimeLine
   arguments: ['@http_client']
 
  twitter_api_statuses_post_destroy:
-  class: \Twitter\Api\Statuses\PostDestroy
+  class: \NicolasMugnier\Twitter\Api\Statuses\PostDestroy
   arguments: ['@http_client']

@@ -1,4 +1,4 @@
-<?php namespace Twitter\Api\Lists;
+<?php namespace NicolasMugnier\Twitter\Api\Lists;
 
 class PostMembersDestroy extends Base {
 

@@ -1,8 +1,9 @@
-<?php namespace Twitter\Api\Friends;
+<?php namespace NicolasMugnier\Twitter\Api\Friends;
 
 /**
  * Class Base
- * @package Twitter\Api\Friends
+ * @package NicolasMugnier\Twitter\Api\Friends
+ * @author Nicolas Mugnier <mugnier.nicolas@gmail.com>
  */
 abstract class Base extends \Twitter\Api\Request {
 

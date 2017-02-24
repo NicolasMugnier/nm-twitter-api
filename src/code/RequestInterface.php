@@ -1,4 +1,4 @@
-<?php namespace Twitter\Api;
+<?php namespace NicolasMugnier\Twitter\Api;
 
 /**
  * Interface RequestInterface
