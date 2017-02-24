@@ -1,10 +1,10 @@
-<?php namespace Twitter\Api\Media;
+<?php namespace NicolasMugnier\Twitter\Api\Media;
 
 /**
  * Class Base
- * @package Twitter\Api\Media
+ * @package NicolasMugnier\Twitter\Api\Media
  */
-abstract class Base extends \Twitter\Api\Request {
+abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
 
     /**
      * @var array

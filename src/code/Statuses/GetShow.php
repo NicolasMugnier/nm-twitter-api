@@ -1,8 +1,8 @@
-<?php namespace Twitter\Api\Statuses;
+<?php namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
  * Class GetShow
- * @package Twitter\Api\Statuses
+ * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/show/%3Aid
  */
 class GetShow extends Base {
