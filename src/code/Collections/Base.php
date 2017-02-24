@@ -4,7 +4,7 @@
  * Class Base
  * @package NicolasMugnier\Twitter\Api\Collections
  */
-abstract class Base extends \Twitter\Api\Request {
+abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
 
     /**
      * @return string
