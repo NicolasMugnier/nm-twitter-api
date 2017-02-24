@@ -5,7 +5,7 @@
  * @package NicolasMugnier\Twitter\Api\Friends
  * @author Nicolas Mugnier <mugnier.nicolas@gmail.com>
  */
-abstract class Base extends \Twitter\Api\Request {
+abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
 
     /**
      * @return string
