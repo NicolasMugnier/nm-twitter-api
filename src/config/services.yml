@@ -30,6 +30,10 @@ services:
   class: \NicolasMugnier\Twitter\Api\Statuses\PostUpdate
   arguments: ['@http_client']
 
+ twitter_api_statuses_post_retweet:
+  class: \NicolasMugnier\Twitter\Api\Statuses\PostRetweet
+  arguments: ['@http_client']
+
  twitter_api_statuses_get_home_timeline:
   class: \NicolasMugnier\Twitter\Api\Statuses\GetHomeTimeLine
   arguments: ['@http_client']
@@ -44,4 +48,12 @@ services:
 
  twitter_api_statuses_post_destroy:
   class: \NicolasMugnier\Twitter\Api\Statuses\PostDestroy
+  arguments: ['@http_client']
+
+ twitter_api_favorites_post_create:
+  class: \NicolasMugnier\Twitter\Api\Favorites\PostCreate
+  arguments: ['@http_client']
+
+ twitter_api_direct_messages_events_new:
+  class: \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew
   arguments: ['@http_client']
