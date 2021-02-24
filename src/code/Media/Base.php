@@ -82,17 +82,12 @@ abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
             $oauth .= 'oauth_token="'.$this->getOAuthToken().'", ';
             $oauth .= 'oauth_version="'.$this->getOAuthVersion().'"';
 
-            $body = new \GuzzleHttp\Post\PostBody();
-            $body->forceMultipartUpload(true);
-            $body->replaceFields(['media_data' => $this->multipart['media_data']]);
-
             return $this->getClient()->$method($this->getUrl(),
                 [
                     'headers' => [
                         'Authorization' => $oauth,
-                        'Content-Type' => 'application/octet-stream'
                     ],
-                    'body' => $body
+                    'multipart' => [['name' => 'media', 'contents' => $this->multipart['media']]]
                 ]
             );
 
