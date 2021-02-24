@@ -23,7 +23,11 @@ class Stream {
 
     public function keepAlive($time = 10)
     {
-        $this->directMessageEvent->setType()->setRecipientId($_ENV['ACCOUNT_ID'])->setMessageData('Try to connect to stream ' . $time/10 .' attempt');
+        $this->directMessageEvent
+            ->setType()
+            ->setRecipientId($_ENV['ACCOUNT_ID'])
+            ->setMessageData('Try to connect to stream ' . $time/10 .' attempt')
+            ->execute();
         $this->open();
         sleep($time);
         $this->keepAlive($time*2);
