@@ -20,6 +20,11 @@ abstract class Request implements RequestInterface {
      */
     protected $query = array();
 
+    /** 
+     * @var array
+     */
+    protected $body = array();
+
     /**
      * @var string
      */
@@ -247,23 +252,24 @@ abstract class Request implements RequestInterface {
             $oauth .= 'oauth_token="'.$this->getOAuthToken().'", ';
             $oauth .= 'oauth_version="'.$this->getOAuthVersion().'"';
 
-            return $this->getClient()->$method($this->getUrl(),
-                [
-                    'headers' => [
-                        'Authorization' => $oauth
-                    ]
+            $params = [
+                'headers' => [
+                    'Authorization' => $oauth
                 ]
-            );
+            ];
+            if (count($this->body) > 0) {
+                $params = array_merge($params, $this->body);
+            }
+            return $this->getClient()->$method($this->getUrl(), $params);
 
         }catch(RequestException $e){
-
             $errorMessage = '---------[MESSAGE]---------'."\n";
             $errorMessage .= $e->getMessage()."\n";
             $errorMessage .= "\n".'----------[REQUEST]----------'."\n";
-            $errorMessage .= $e->getRequest();
+            $errorMessage .= $e->getRequest()->getBody();
             if ($e->hasResponse()) {
                 $errorMessage .= '----------[RESPONSE]----------'."\n";
-                $errorMessage .= $e->getResponse() . "\n";
+                $errorMessage .= $e->getResponse()->getBody() . "\n";
             }
             throw new \Exception($errorMessage);
         }
