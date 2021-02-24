@@ -60,4 +60,4 @@ services:
   
   twitter_api_stream_stream:
     class: NicolasMugnier\Twitter\Api\Stream\Stream
-    arguments: ['@twitter_api_statuses_post_update', '@twitter_api_favorites_post_create', '@twitter_api_direct_messages_post_events_new']
+    arguments: ['@twitter_api_statuses_post_retweet', '@twitter_api_favorites_post_create', '@twitter_api_direct_messages_post_events_new']
