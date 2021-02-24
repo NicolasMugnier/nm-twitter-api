@@ -57,6 +57,10 @@ services:
   twitter_api_direct_messages_post_events_new:
     class: \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew
     arguments: ['@http_client']
+
+  twitter_api_media_post_upload:
+    class: \NicolasMugnier\Twitter\Api\Media\PostUpload
+    arguments: ['@http_client']
   
   twitter_api_stream_stream:
     class: NicolasMugnier\Twitter\Api\Stream\Stream
