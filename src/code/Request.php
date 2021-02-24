@@ -11,7 +11,7 @@ abstract class Request implements RequestInterface {
     const baseUrl = 'https://api.twitter.com';
 
     /**
-     * @var Client
+     * @var \GuzzleHttp\Client
      */
     protected $client;
 
@@ -66,6 +66,10 @@ abstract class Request implements RequestInterface {
         \GuzzleHttp\Client $client
     ){
         $this->client = $client;
+        $this->oauthConsumerKey = $_ENV['OAUTH_CONSUMER_KEY'];
+        $this->oauthConsumerSecret = $_ENV['OAUTH_CONSUMER_SECRET'];
+        $this->oauthToken = $_ENV['OAUTH_TOKEN'];
+        $this->oauthTokenSecret = $_ENV['OAUTH_TOKEN_SECRET'];
     }
 
     /**
