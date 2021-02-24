@@ -13,7 +13,7 @@ class Stream {
     public function __construct(
         \NicolasMugnier\Twitter\Api\Statuses\PostRetweet $status,
         \NicolasMugnier\Twitter\Api\Favorites\PostCreate $favorites,
-        \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew $directMessagEvent
+        \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew $directMessageEvent
     ) {
         $this->status = $status;
         $this->favorites = $favorites;
