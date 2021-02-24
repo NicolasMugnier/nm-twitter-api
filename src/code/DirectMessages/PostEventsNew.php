@@ -6,8 +6,15 @@
  * @package   NicolasMugnier\Twitter\Api\DirectMessages
  * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @see       https://developer.twitter.com/en/docs/twitter-api/v1/direct-messages/sending-and-receiving/api-reference/new-event
  */
 class PostEventsNew extends Base {
+
+    public function setType()
+    {
+        $this->body['json']['event']['type'] = 'message_create';
+        return $this;
+    }
 
     /**
      * @param $recipientId
@@ -15,7 +22,7 @@ class PostEventsNew extends Base {
      */
     public function setRecipientId($recipientId)
     {
-        $this->query['target.recipient_id'] = $recipientId;
+        $this->body['json']['event']['message_create']['target']['recipient_id'] = $recipientId;
         return $this;
     }
 
@@ -25,7 +32,7 @@ class PostEventsNew extends Base {
      */
     public function setMessageData($messageData)
     {
-        $this->query['message_data'] = $messageData;
+        $this->body['json']['event']['message_create']['message_data']['text'] = $messageData;
         return $this;
     }
 
