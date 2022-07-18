@@ -1,33 +1,25 @@
-<?php namespace NicolasMugnier\Twitter\Api\Lists;
+<?php
 
-/**
- * Class Base
- *
- * @package   NicolasMugnier\Twitter\Api\Lists
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail./com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
+declare(strict_types=1);
 
-    /**
-     * @return string
-     */
-    public function getVersion(){
+namespace NicolasMugnier\Twitter\Api\Lists;
+
+use \NicolasMugnier\Twitter\Api\Request;
+
+abstract class Base extends Request
+{
+    public function getVersion(): string
+    {
         return '1.1';
     }
 
-    /**
-     * @return string
-     */
-    public function getResource(){
+    public function getResource(): string
+    {
         return 'lists';
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat(){
+    public function getFormat(): string
+    {
         return 'json';
     }
-
 }

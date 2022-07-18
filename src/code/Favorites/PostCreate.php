@@ -1,35 +1,24 @@
-<?php namespace NicolasMugnier\Twitter\Api\Favorites;
+<?php
 
-/**
- * Class GetIds
- *
- * @package   NicolasMugnier\Twitter\Api\Favorites
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class PostCreate extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id){
+namespace NicolasMugnier\Twitter\Api\Favorites;
+
+class PostCreate extends Base
+{
+
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'create';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

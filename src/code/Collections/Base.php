@@ -1,30 +1,26 @@
-<?php namespace NicolasMugnier\Twitter\Api\Collections;
+<?php
 
-/**
- * Class Base
- * @package NicolasMugnier\Twitter\Api\Collections
- */
-abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
+declare(strict_types=1);
 
-    /**
-     * @return string
-     */
-    public function getVersion(){
+namespace NicolasMugnier\Twitter\Api\Collections;
+
+use \NicolasMugnier\Twitter\Api\Request;
+
+abstract class Base extends Request
+{
+
+    public function getVersion(): string
+    {
         return '1.1';
     }
 
-    /**
-     * @return string
-     */
-    public function getResource(){
+    public function getResource(): string
+    {
         return 'collections';
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat(){
+    public function getFormat(): string
+    {
         return 'json';
     }
-
 }

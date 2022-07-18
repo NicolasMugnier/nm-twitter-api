@@ -1,6 +1,9 @@
-<?php namespace NicolasMugnier\Twitter\Api\Stream;
+<?php
 
-class Stream {
+namespace NicolasMugnier\Twitter\Api\Stream;
+
+class Stream
+{
 
     protected $status;
 
@@ -26,11 +29,11 @@ class Stream {
         $this->directMessageEvent
             ->setType()
             ->setRecipientId($_ENV['ACCOUNT_ID'])
-            ->setMessageData('Try to connect to stream ' . $time/10 .' attempt')
+            ->setMessageData('Try to connect to stream ' . $time / 10 . ' attempt')
             ->execute();
         $this->open();
         sleep($time);
-        $this->keepAlive($time*2);
+        $this->keepAlive($time * 2);
     }
 
     public function open()
@@ -40,7 +43,7 @@ class Stream {
         fwrite($sock, "GET /2/tweets/search/stream HTTP/1.0\r\nHost: api.twitter.com\r\nAccept: */*\r\nAuthorization: Bearer $this->bearerToken\r\n\r\n");
         while (!feof($sock)) {
             $message = fgets($sock, 4096);
-            echo $message."\n";
+            echo $message . "\n";
             $message = json_decode($message);
             if (isset($message->data)) {
                 $id = $message->data->id;
@@ -52,5 +55,4 @@ class Stream {
         fclose($sock);
         return $message;
     }
-
 }

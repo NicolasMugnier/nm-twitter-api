@@ -9,9 +9,7 @@
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "Nicolas Mugnier",
-      "email": "mugnier.nicolas@gmail.com",
-      "homepage": "http://www.nicolasmugnier.me"
+      "name": "Nicolas Mugnier"
     }
   ],
   "require": {

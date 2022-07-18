@@ -1,31 +1,26 @@
-<?php namespace NicolasMugnier\Twitter\Api\Favorites;
+<?php
 
-/**
- * Class Base
- * @package NicolasMugnier\Twitter\Api\Favorites
- * @author Nicolas Mugnier <mugnier.nicolas@gmail.com>
- */
-abstract class Base extends \NicolasMugnier\Twitter\Api\Request {
+declare(strict_types=1);
 
-    /**
-     * @return string
-     */
-    public function getVersion(){
+namespace NicolasMugnier\Twitter\Api\Favorites;
+
+use \NicolasMugnier\Twitter\Api\Request;
+
+abstract class Base extends Request
+{
+
+    public function getVersion(): string
+    {
         return '1.1';
     }
 
-    /**
-     * @return string
-     */
-    public function getResource(){
+    public function getResource(): string
+    {
         return 'favorites';
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat(){
+    public function getFormat(): string
+    {
         return 'json';
     }
-
 }

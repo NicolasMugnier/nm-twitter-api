@@ -1,70 +1,42 @@
-<?php namespace NicolasMugnier\Twitter\Api;
+<?php
+
+declare(strict_types=1);
+
+namespace NicolasMugnier\Twitter\Api;
 
 use \GuzzleHttp\Exception\RequestException;
 
-/**
- * Class Request
- * @package Twitter\Api
- */
-abstract class Request implements RequestInterface {
+abstract class Request implements RequestInterface
+{
 
     const baseUrl = 'https://api.twitter.com';
 
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
+    protected \GuzzleHttp\Client $client;
 
-    /**
-     * @var array
-     */
-    protected $query = array();
+    protected array $query = [];
 
-    /** 
-     * @var array
-     */
-    protected $body = array();
+    protected array $body = [];
 
-    /**
-     * @var string
-     */
-    protected $oauthConsumerKey;
+    protected string $oauthConsumerKey;
 
-    /**
-     * @var string
-     */
-    protected $oauthConsumerSecret;
+    protected string $oauthConsumerSecret;
 
-    /**
-     * @var string
-     */
-    protected $oauthNonce;
+    protected string $oauthNonce;
 
-    /**
-     * @var string
-     */
-    protected $oauthToken;
+    protected string $oauthToken;
 
-    /**
-     * @var string
-     */
-    protected $oauthTokenSecret;
+    protected string $oauthTokenSecret;
 
-    /**
-     * @var string
-     */
-    protected $timestamp;
+    protected int $timestamp;
 
-    /**
-     * @return Client
-     */
-    public function getClient(){
+    public function getClient(): \GuzzleHttp\Client
+    {
         return $this->client;
     }
 
     public function __construct(
         \GuzzleHttp\Client $client
-    ){
+    ) {
         $this->client = $client;
         $this->oauthConsumerKey = $_ENV['OAUTH_CONSUMER_KEY'];
         $this->oauthConsumerSecret = $_ENV['OAUTH_CONSUMER_SECRET'];
@@ -72,189 +44,148 @@ abstract class Request implements RequestInterface {
         $this->oauthTokenSecret = $_ENV['OAUTH_TOKEN_SECRET'];
     }
 
-    /**
-     * @param $oauthConsumerKey
-     * @return $this
-     */
-    public function setOAuthConsumerKey($oauthConsumerKey){
+    public function setOAuthConsumerKey(string $oauthConsumerKey): self
+    {
         $this->oauthConsumerKey = $oauthConsumerKey;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOAuthConsumerKey(){
+    public function getOAuthConsumerKey(): string
+    {
         return $this->oauthConsumerKey;
     }
 
-    /**
-     * @param string $oauthConsumerSecret
-     * @return $this
-     */
-    public function setOAuthConsumerSecret($oauthConsumerSecret){
+    public function setOAuthConsumerSecret(string $oauthConsumerSecret): self
+    {
         $this->oauthConsumerSecret = $oauthConsumerSecret;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOAuthConsumerSecret(){
+    public function getOAuthConsumerSecret(): string
+    {
         return $this->oauthConsumerSecret;
     }
 
-    /**
-     * @return string
-     */
-    public function getOAuthNonce(){
-        if($this->oauthNonce === null){
-            $this->oauthNonce = base64_encode('5BezU2SwNnWz7dH4JG7XgSN0CpA7srgRp0kiCcFlBu8GhDMdqq'.time());
+    public function getOAuthNonce(): string
+    {
+        if ($this->oauthNonce === null) {
+            $this->oauthNonce = base64_encode('5BezU2SwNnWz7dH4JG7XgSN0CpA7srgRp0kiCcFlBu8GhDMdqq' . time());
         }
         return $this->oauthNonce;
     }
 
-    /**
-     * @return string
-     */
-    protected function getOAuthSignatureMethod(){
+    protected function getOAuthSignatureMethod(): string
+    {
         return 'HMAC-SHA1';
     }
 
-    /**
-     * @return int|string
-     */
-    protected function getOAuthTimestamp(){
-        if($this->timestamp === null){
+    protected function getOAuthTimestamp(): int
+    {
+        if ($this->timestamp === null) {
             $this->timestamp = time();
         }
 
         return $this->timestamp;
     }
 
-    /**
-     * @param $oauthToken
-     * @return $this
-     */
-    public function setOAuthToken($oauthToken){
+    public function setOAuthToken(string $oauthToken): self
+    {
         $this->oauthToken = $oauthToken;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOAuthToken(){
+    public function getOAuthToken(): string
+    {
         return $this->oauthToken;
     }
 
-    /**
-     * @param $oauthTokenSecret
-     * @return $this
-     */
-    public function setOAuthTokenSecret($oauthTokenSecret){
+    public function setOAuthTokenSecret(string $oauthTokenSecret): self
+    {
         $this->oauthTokenSecret = $oauthTokenSecret;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOAuthTokenSecret(){
+    public function getOAuthTokenSecret(): string
+    {
         return $this->oauthTokenSecret;
     }
 
-    /**
-     * @return string
-     */
-    protected function getOAuthVersion(){
+    protected function getOAuthVersion(): string
+    {
         return '1.0';
     }
 
-    /**
-     * @return string
-     */
-    public function getUrl(){
+    public function getUrl(): string
+    {
 
         $url = $this->getBaseUrl();
 
-        if(count($this->query) > 0){
+        if (count($this->query) > 0) {
 
             $tmp = [];
-            foreach($this->query as $param => $value){
-                $tmp[] = $param.'='.rawurlencode($value);
+            foreach ($this->query as $param => $value) {
+                $tmp[] = $param . '=' . rawurlencode($value);
             }
 
-            $url .= '?'.implode('&', $tmp);
-
+            $url .= '?' . implode('&', $tmp);
         }
 
         return $url;
+    }
 
+    public function getBaseUrl(): string
+    {
+        return $url = self::baseUrl . '/' . $this->getVersion() . '/' . $this->getResource() . '/' . $this->getOperation() . '.' . $this->getFormat();
     }
 
     /**
-     * @return string
-     */
-    public function getBaseUrl(){
-
-        return $url = self::baseUrl.'/'.$this->getVersion().'/'.$this->getResource().'/'.$this->getOperation().'.'.$this->getFormat();
-
-    }
-
-    /**
-     * @return string
      * @link https://dev.twitter.com/oauth/overview/creating-signatures
      */
-    protected function getOAuthSignature(){
+    protected function getOAuthSignature(): string
+    {
 
         $params = [];
-        foreach($this->query as $param => $value){
+        foreach ($this->query as $param => $value) {
 
-           $params[rawurlencode($param)] = rawurlencode($param).'='.rawurlencode($value);
-
+            $params[rawurlencode($param)] = rawurlencode($param) . '=' . rawurlencode($value);
         }
 
-        $params[rawurlencode('oauth_consumer_key')] = rawurlencode('oauth_consumer_key').'='.rawurlencode($this->getOAuthConsumerKey());
-        $params[rawurlencode('oauth_nonce')] = rawurlencode('oauth_nonce').'='.rawurlencode($this->getOAuthNonce());
-        $params[rawurlencode('oauth_signature_method')] = rawurlencode('oauth_signature_method').'='.rawurlencode($this->getOAuthSignatureMethod());
-        $params[rawurlencode('oauth_timestamp')] = rawurlencode('oauth_timestamp').'='.rawurlencode($this->getOAuthTimestamp());
-        $params[rawurlencode('oauth_token')] = rawurlencode('oauth_token').'='.rawurlencode($this->getOAuthToken());
-        $params[rawurlencode('oauth_version')] = rawurlencode('oauth_version').'='.rawurlencode($this->getOAuthVersion());
+        $params[rawurlencode('oauth_consumer_key')] = rawurlencode('oauth_consumer_key') . '=' . rawurlencode($this->getOAuthConsumerKey());
+        $params[rawurlencode('oauth_nonce')] = rawurlencode('oauth_nonce') . '=' . rawurlencode($this->getOAuthNonce());
+        $params[rawurlencode('oauth_signature_method')] = rawurlencode('oauth_signature_method') . '=' . rawurlencode($this->getOAuthSignatureMethod());
+        $params[rawurlencode('oauth_timestamp')] = rawurlencode('oauth_timestamp') . '=' . rawurlencode((string)$this->getOAuthTimestamp());
+        $params[rawurlencode('oauth_token')] = rawurlencode('oauth_token') . '=' . rawurlencode($this->getOAuthToken());
+        $params[rawurlencode('oauth_version')] = rawurlencode('oauth_version') . '=' . rawurlencode($this->getOAuthVersion());
 
         ksort($params);
 
         $outputString = implode('&', $params);
 
-        $signatureBaseString = strtoupper($this->getHttpMethod()).'&'.rawurlencode($this->getBaseUrl()).'&'.rawurlencode($outputString);
+        $signatureBaseString = strtoupper($this->getHttpMethod()) . '&' . rawurlencode($this->getBaseUrl()) . '&' . rawurlencode($outputString);
 
         return rawurlencode(base64_encode(hash_hmac('SHA1', $signatureBaseString, $this->getSigninKey(), true)));
-
     }
 
-    /**
-     * @return string
-     */
-    protected function getSigninKey(){
-
-        return rawurlencode($this->getOAuthConsumerSecret()).'&'.rawurlencode($this->getOAuthTokenSecret());
-
+    protected function getSigninKey(): string
+    {
+        return rawurlencode($this->getOAuthConsumerSecret()) . '&' . rawurlencode($this->getOAuthTokenSecret());
     }
 
-    public function execute(){
+    public function execute()
+    {
 
         try {
 
             $method = strtolower($this->getHttpMethod());
 
             $oauth = 'OAuth ';
-            $oauth .= 'oauth_consumer_key="'.$this->getOAuthConsumerKey().'", ';
-            $oauth .= 'oauth_nonce="'.$this->getOAuthNonce().'", ';
-            $oauth .= 'oauth_signature="'.$this->getOAuthSignature().'", ';
-            $oauth .= 'oauth_signature_method="'.$this->getOAuthSignatureMethod().'", ';
-            $oauth .= 'oauth_timestamp="'.$this->getOAuthTimestamp().'", ';
-            $oauth .= 'oauth_token="'.$this->getOAuthToken().'", ';
-            $oauth .= 'oauth_version="'.$this->getOAuthVersion().'"';
+            $oauth .= 'oauth_consumer_key="' . $this->getOAuthConsumerKey() . '", ';
+            $oauth .= 'oauth_nonce="' . $this->getOAuthNonce() . '", ';
+            $oauth .= 'oauth_signature="' . $this->getOAuthSignature() . '", ';
+            $oauth .= 'oauth_signature_method="' . $this->getOAuthSignatureMethod() . '", ';
+            $oauth .= 'oauth_timestamp="' . $this->getOAuthTimestamp() . '", ';
+            $oauth .= 'oauth_token="' . $this->getOAuthToken() . '", ';
+            $oauth .= 'oauth_version="' . $this->getOAuthVersion() . '"';
 
             $params = [
                 'headers' => [
@@ -265,19 +196,16 @@ abstract class Request implements RequestInterface {
                 $params = array_merge($params, $this->body);
             }
             return $this->getClient()->$method($this->getUrl(), $params);
-
-        }catch(RequestException $e){
-            $errorMessage = '---------[MESSAGE]---------'."\n";
-            $errorMessage .= $e->getMessage()."\n";
-            $errorMessage .= "\n".'----------[REQUEST]----------'."\n";
+        } catch (RequestException $e) {
+            $errorMessage = '---------[MESSAGE]---------' . "\n";
+            $errorMessage .= $e->getMessage() . "\n";
+            $errorMessage .= "\n" . '----------[REQUEST]----------' . "\n";
             $errorMessage .= $e->getRequest()->getBody();
             if ($e->hasResponse()) {
-                $errorMessage .= '----------[RESPONSE]----------'."\n";
+                $errorMessage .= '----------[RESPONSE]----------' . "\n";
                 $errorMessage .= $e->getResponse()->getBody() . "\n";
             }
             throw new \Exception($errorMessage);
         }
-
     }
-
 }
