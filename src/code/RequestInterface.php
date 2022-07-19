@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api;
 
 interface RequestInterface
 {
-
     function getOperation(): string;
 
     function getUrl(): string;

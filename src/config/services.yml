@@ -1,3 +1,6 @@
+imports:
+  - { resource : ./parameters.yml }
+
 services:
   _defaults:
     autowire: true
@@ -8,37 +11,10 @@ services:
       $oauthToken: '%twitter.api.oauth_token%'
       $oauthTokenSecret: '%twitter.api.oauth_token_secret%'
       $bearerToken: '%twitter.api.bearer_token%'
+      $defaultVersion: '%twitter.api.default_version%'
+      $defaultFormat: '%twitter.api.default_format%'
   
   GuzzleHttp\Client: ~
 
-  NicolasMugnier\Twitter\Api\Collections\GetList: ~
-
-  NicolasMugnier\Twitter\Api\Collections\GetShow: ~
-
-  NicolasMugnier\Twitter\Api\Collections\PostCreate: ~
-
-  NicolasMugnier\Twitter\Api\Collections\PostDestroy: ~
-
-  NicolasMugnier\Twitter\Api\Collections\PostEntriesAdd: ~
-
-  NicolasMugnier\Twitter\Api\Friends\GetIds: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\PostUpdate: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\PostRetweet: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\GetHomeTimeLine: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\GetLookup: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\GetUserTimeLine: ~
-
-  NicolasMugnier\Twitter\Api\Statuses\PostDestroy: ~
-
-  NicolasMugnier\Twitter\Api\Favorites\PostCreate: ~
-
-  NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew: ~
-
-  NicolasMugnier\Twitter\Api\Media\PostUpload: ~
-  
-  NicolasMugnier\Twitter\Api\Stream\Stream: ~
+  NicolasMugnier\Twitter\Api\:
+    resource: '../code/*'

@@ -9,22 +9,11 @@ use GuzzleHttp\Exception\RequestException;
 
 abstract class AbstractMedia extends Request
 {
-
     protected array $multipart = [];
-
-    public function getVersion(): string
-    {
-        return '1.1';
-    }
 
     public function getResource(): string
     {
         return 'media';
-    }
-
-    public function getFormat(): string
-    {
-        return 'json';
     }
 
     public function getBaseUrl(): string

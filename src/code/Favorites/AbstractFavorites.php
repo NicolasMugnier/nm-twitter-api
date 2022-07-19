@@ -8,19 +8,8 @@ use \NicolasMugnier\Twitter\Api\Request;
 
 abstract class AbstractFavorites extends Request
 {
-
-    public function getVersion(): string
-    {
-        return '1.1';
-    }
-
     public function getResource(): string
     {
         return 'favorites';
-    }
-
-    public function getFormat(): string
-    {
-        return 'json';
     }
 }

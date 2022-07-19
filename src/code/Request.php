@@ -28,6 +28,10 @@ abstract class Request implements RequestInterface
 
     private string $oauthTokenSecret;
 
+    private string $defaultVersion;
+
+    private string $defaultFormat;
+
     protected int $timestamp;
 
     public function getClient(): Client
@@ -40,13 +44,17 @@ abstract class Request implements RequestInterface
         string $oauthConsumerKey,
         string $oauthConsumerSecret,
         string $oauthToken,
-        string $oauthTokenSecret
+        string $oauthTokenSecret,
+        string $defaultVersion,
+        string $defaultFormat
     ) {
         $this->client = $client;
         $this->oauthConsumerKey = $oauthConsumerKey;
         $this->oauthConsumerSecret = $oauthConsumerSecret;
         $this->oauthToken = $oauthToken;
         $this->oauthTokenSecret = $oauthTokenSecret;
+        $this->defaultVersion = $defaultVersion;
+        $this->defaultFormat = $defaultFormat;
     }
 
     public function getOAuthConsumerKey(): string
@@ -94,6 +102,16 @@ abstract class Request implements RequestInterface
     protected function getOAuthVersion(): string
     {
         return '1.0';
+    }
+
+    public function getFormat(): string
+    {
+        return $this->defaultFormat;
+    }
+
+    public function getVersion(): string
+    {
+        return $this->defaultVersion;
     }
 
     public function getUrl(): string

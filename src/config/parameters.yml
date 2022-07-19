@@ -4,3 +4,5 @@ parameters:
   twitter.api.oauth_token: '%env(resolve:OAUTH_TOKEN)%'
   twitter.api.oauth_token_secret: '%env(resolve:OAUTH_TOKEN_SECRET)%'
   twitter.api.bearer_token: '%env(resolve:BEARER_TOKEN)%'
+  twitter.api.default_version: '1.1'
+  twitter.api.default_format: 'json'
