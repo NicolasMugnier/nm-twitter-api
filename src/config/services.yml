@@ -1,67 +1,44 @@
 services:
-  http_client:
-    class: \GuzzleHttp\Client
-
-  twitter_api_collections_get_list:
-    class: \NicolasMugnier\Twitter\Api\Collections\GetList
-    arguments: ['@http_client']
-
-  twitter_api_collections_get_show:
-    class: \NicolasMugnier\Twitter\Api\Collections\GetShow
-    arguments: ['@http_client']
-
-  twitter_api_collections_post_create:
-    class: \NicolasMugnier\Twitter\Api\Collections\PostCreate
-    arguments: ['@http_client']
-
-  twitter_api_collections_post_destroy:
-    class: \NicolasMugnier\Twitter\Api\Collections\PostDestroy
-    arguments: ['@http_client']
-
-  twitter_api_collections_post_entries_add:
-    class: \NicolasMugnier\Twitter\Api\Collections\PostEntriesAdd
-    arguments: ['@http_client']
-
-  twitter_api_friends_get_ids:
-    class: \NicolasMugnier\Twitter\Api\Friends\GetIds
-    arguments: ['@http_client']
-
-  twitter_api_statuses_post_update:
-    class: \NicolasMugnier\Twitter\Api\Statuses\PostUpdate
-    arguments: ['@http_client']
-
-  twitter_api_statuses_post_retweet:
-    class: \NicolasMugnier\Twitter\Api\Statuses\PostRetweet
-    arguments: ['@http_client']
-
-  twitter_api_statuses_get_home_timeline:
-    class: \NicolasMugnier\Twitter\Api\Statuses\GetHomeTimeLine
-    arguments: ['@http_client']
-
-  twitter_api_statuses_get_lookup:
-    class: \NicolasMugnier\Twitter\Api\Statuses\GetLookup
-    arguments: ['@http_client']
-
-  twitter_api_statuses_get_user_timeline:
-    class: \NicolasMugnier\Twitter\Api\Statuses\GetUserTimeLine
-    arguments: ['@http_client']
-
-  twitter_api_statuses_post_destroy:
-    class: \NicolasMugnier\Twitter\Api\Statuses\PostDestroy
-    arguments: ['@http_client']
-
-  twitter_api_favorites_post_create:
-    class: \NicolasMugnier\Twitter\Api\Favorites\PostCreate
-    arguments: ['@http_client']
-
-  twitter_api_direct_messages_post_events_new:
-    class: \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew
-    arguments: ['@http_client']
-
-  twitter_api_media_post_upload:
-    class: \NicolasMugnier\Twitter\Api\Media\PostUpload
-    arguments: ['@http_client']
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $oauthConsumerKey: '%twitter.api.oauth_consumer_key%'
+      $oauthConsumerSecret: '%twitter.api.oauth_consumer_secret%'
+      $oauthToken: '%twitter.api.oauth_token%'
+      $oauthTokenSecret: '%twitter.api.oauth_token_secret%'
+      $bearerToken: '%twitter.api.bearer_token%'
   
-  twitter_api_stream_stream:
-    class: NicolasMugnier\Twitter\Api\Stream\Stream
-    arguments: ['@twitter_api_statuses_post_retweet', '@twitter_api_favorites_post_create', '@twitter_api_direct_messages_post_events_new']
+  GuzzleHttp\Client: ~
+
+  NicolasMugnier\Twitter\Api\Collections\GetList: ~
+
+  NicolasMugnier\Twitter\Api\Collections\GetShow: ~
+
+  NicolasMugnier\Twitter\Api\Collections\PostCreate: ~
+
+  NicolasMugnier\Twitter\Api\Collections\PostDestroy: ~
+
+  NicolasMugnier\Twitter\Api\Collections\PostEntriesAdd: ~
+
+  NicolasMugnier\Twitter\Api\Friends\GetIds: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\PostUpdate: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\PostRetweet: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\GetHomeTimeLine: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\GetLookup: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\GetUserTimeLine: ~
+
+  NicolasMugnier\Twitter\Api\Statuses\PostDestroy: ~
+
+  NicolasMugnier\Twitter\Api\Favorites\PostCreate: ~
+
+  NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew: ~
+
+  NicolasMugnier\Twitter\Api\Media\PostUpload: ~
+  
+  NicolasMugnier\Twitter\Api\Stream\Stream: ~

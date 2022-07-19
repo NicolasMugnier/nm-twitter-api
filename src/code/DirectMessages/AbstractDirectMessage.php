@@ -6,7 +6,7 @@ namespace NicolasMugnier\Twitter\Api\DirectMessages;
 
 use \NicolasMugnier\Twitter\Api\Request;
 
-abstract class Base extends Request
+abstract class AbstractDirectMessage extends Request
 {
 
     public function getVersion(): string

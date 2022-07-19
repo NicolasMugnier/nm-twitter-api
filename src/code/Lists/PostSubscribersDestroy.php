@@ -1,13 +1,18 @@
-<?php namespace NicolasMugnier\Twitter\Api\Lists;
+<?php
 
-class PostSubscribersDestroy extends Base {
+declare(strict_types=1);
 
-    function getOperation()
+namespace NicolasMugnier\Twitter\Api\Lists;
+
+class PostSubscribersDestroy extends Base
+{
+
+    function getOperation(): string
     {
         return 'subscribers/destroy';
     }
 
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'POST';
     }

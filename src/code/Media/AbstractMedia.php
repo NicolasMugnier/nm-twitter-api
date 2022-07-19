@@ -7,7 +7,7 @@ namespace NicolasMugnier\Twitter\Api\Media;
 use \NicolasMugnier\Twitter\Api\Request;
 use GuzzleHttp\Exception\RequestException;
 
-abstract class Base extends Request
+abstract class AbstractMedia extends Request
 {
 
     protected array $multipart = [];
@@ -29,7 +29,6 @@ abstract class Base extends Request
 
     public function getBaseUrl(): string
     {
-
         return 'https://upload.twitter.com/' . $this->getVersion() . '/' . $this->getResource() . '/' . $this->getOperation() . '.' . $this->getFormat();
     }
 

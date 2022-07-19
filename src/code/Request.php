@@ -5,60 +5,53 @@ declare(strict_types=1);
 namespace NicolasMugnier\Twitter\Api;
 
 use \GuzzleHttp\Exception\RequestException;
+use \GuzzleHttp\Client;
 
 abstract class Request implements RequestInterface
 {
 
     const baseUrl = 'https://api.twitter.com';
 
-    protected \GuzzleHttp\Client $client;
+    private Client $client;
 
     protected array $query = [];
 
     protected array $body = [];
 
-    protected string $oauthConsumerKey;
+    private string $oauthConsumerKey;
 
-    protected string $oauthConsumerSecret;
+    private string $oauthConsumerSecret;
 
-    protected string $oauthNonce;
+    private string $oauthNonce;
 
-    protected string $oauthToken;
+    private string $oauthToken;
 
-    protected string $oauthTokenSecret;
+    private string $oauthTokenSecret;
 
     protected int $timestamp;
 
-    public function getClient(): \GuzzleHttp\Client
+    public function getClient(): Client
     {
         return $this->client;
     }
 
     public function __construct(
-        \GuzzleHttp\Client $client
+        Client $client,
+        string $oauthConsumerKey,
+        string $oauthConsumerSecret,
+        string $oauthToken,
+        string $oauthTokenSecret
     ) {
         $this->client = $client;
-        $this->oauthConsumerKey = $_ENV['OAUTH_CONSUMER_KEY'];
-        $this->oauthConsumerSecret = $_ENV['OAUTH_CONSUMER_SECRET'];
-        $this->oauthToken = $_ENV['OAUTH_TOKEN'];
-        $this->oauthTokenSecret = $_ENV['OAUTH_TOKEN_SECRET'];
-    }
-
-    public function setOAuthConsumerKey(string $oauthConsumerKey): self
-    {
         $this->oauthConsumerKey = $oauthConsumerKey;
-        return $this;
+        $this->oauthConsumerSecret = $oauthConsumerSecret;
+        $this->oauthToken = $oauthToken;
+        $this->oauthTokenSecret = $oauthTokenSecret;
     }
 
     public function getOAuthConsumerKey(): string
     {
         return $this->oauthConsumerKey;
-    }
-
-    public function setOAuthConsumerSecret(string $oauthConsumerSecret): self
-    {
-        $this->oauthConsumerSecret = $oauthConsumerSecret;
-        return $this;
     }
 
     public function getOAuthConsumerSecret(): string
@@ -88,21 +81,9 @@ abstract class Request implements RequestInterface
         return $this->timestamp;
     }
 
-    public function setOAuthToken(string $oauthToken): self
-    {
-        $this->oauthToken = $oauthToken;
-        return $this;
-    }
-
     public function getOAuthToken(): string
     {
         return $this->oauthToken;
-    }
-
-    public function setOAuthTokenSecret(string $oauthTokenSecret): self
-    {
-        $this->oauthTokenSecret = $oauthTokenSecret;
-        return $this;
     }
 
     public function getOAuthTokenSecret(): string
@@ -135,7 +116,7 @@ abstract class Request implements RequestInterface
 
     public function getBaseUrl(): string
     {
-        return $url = self::baseUrl . '/' . $this->getVersion() . '/' . $this->getResource() . '/' . $this->getOperation() . '.' . $this->getFormat();
+        return self::baseUrl . '/' . $this->getVersion() . '/' . $this->getResource() . '/' . $this->getOperation() . '.' . $this->getFormat();
     }
 
     /**

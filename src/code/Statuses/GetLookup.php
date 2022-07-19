@@ -1,60 +1,44 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+declare(strict_types=1);
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetLookup
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/lookup
  */
-class GetLookup extends Base {
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id){
+class GetLookup extends AbstractStatus
+{
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param $includeEntities
-     * @return $this
-     */
-    public function setIncludeEntities($includeEntities){
+    public function setIncludeEntities($includeEntities): self
+    {
         $this->query['include_entities'] = $includeEntities;
         return $this;
     }
 
-    /**
-     * @param $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser): self
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @param $map
-     * @return $this
-     */
-    public function setMap($map){
+    public function setMap($map): self
+    {
         $this->query['map'] = $map;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'lookup';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

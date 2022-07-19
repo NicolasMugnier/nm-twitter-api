@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NicolasMugnier\Twitter\Api\Collections;
+namespace NicolasMugnier\Twitter\Api\Friends;
 
 use \NicolasMugnier\Twitter\Api\Request;
 
-abstract class Base extends Request
+abstract class AbstractFriends extends Request
 {
 
     public function getVersion(): string
@@ -16,7 +16,7 @@ abstract class Base extends Request
 
     public function getResource(): string
     {
-        return 'collections';
+        return 'friends';
     }
 
     public function getFormat(): string

@@ -1,35 +1,24 @@
-<?php namespace NicolasMugnier\Twitter\Api\Collections;
+<?php
 
-/**
- * Class PostDestroy
- *
- * @package   NicolasMugnier\Twitter\Api\Collections
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class PostDestroy extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id){
+namespace NicolasMugnier\Twitter\Api\Collections;
+
+class PostDestroy extends AbstractCollection
+{
+
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    function getOperation()
+    function getOperation(): string
     {
         return 'destroy';
     }
 
-    /**
-     * @return string
-     */
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'POST';
     }

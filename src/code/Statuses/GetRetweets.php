@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetRetweets
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/retweets/%3Aid
  */
-class GetRetweets extends Base {
+class GetRetweets extends AbstractStatus
+{
 
     /**
      * @param $id
      * @return $this
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->query['id'] = $id;
         return $this;
     }
@@ -20,7 +22,8 @@ class GetRetweets extends Base {
      * @param $count
      * @return $this
      */
-    public function setCount($count){
+    public function setCount($count)
+    {
         $this->query['count'] = $count;
         return $this;
     }
@@ -29,23 +32,18 @@ class GetRetweets extends Base {
      * @param $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'retweets';
     }
 
-    /**
-     * @return string
-     */
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'GET';
     }

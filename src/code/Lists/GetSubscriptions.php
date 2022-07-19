@@ -1,15 +1,18 @@
-<?php namespace NicolasMugnier\Twitter\Api\Lists;
+<?php
 
-class GetSubscriptions extends Base {
+declare(strict_types=1);
 
-    function getOperation()
+namespace NicolasMugnier\Twitter\Api\Lists;
+
+class GetSubscriptions extends Base
+{
+    function getOperation(): string
     {
         return 'subscriptions';
     }
 
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'GET';
     }
-
 }

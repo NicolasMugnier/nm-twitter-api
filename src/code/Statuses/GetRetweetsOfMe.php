@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetRetweetsOfMe
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/retweets_of_me
  */
-class GetRetweetsOfMe extends Base {
+class GetRetweetsOfMe extends AbstractStatus
+{
 
     /**
      * @param $count
      * @return $this
      */
-    public function setCount($count){
+    public function setCount($count)
+    {
         $this->query['count'] = $count;
         return $this;
     }
@@ -20,7 +22,8 @@ class GetRetweetsOfMe extends Base {
      * @param $sinceId
      * @return $this
      */
-    public function setSinceId($sinceId){
+    public function setSinceId($sinceId)
+    {
         $this->query['since_id'] = $sinceId;
         return $this;
     }
@@ -29,7 +32,8 @@ class GetRetweetsOfMe extends Base {
      * @param $maxId
      * @return $this
      */
-    public function setMaxId($maxId){
+    public function setMaxId($maxId)
+    {
         $this->query['max_id'] = $maxId;
         return $this;
     }
@@ -38,7 +42,8 @@ class GetRetweetsOfMe extends Base {
      * @param $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
@@ -47,7 +52,8 @@ class GetRetweetsOfMe extends Base {
      * @param $includeEntities
      * @return $this
      */
-    public function setIncludeEntities($includeEntities){
+    public function setIncludeEntities($includeEntities)
+    {
         $this->query['include_entities'] = $includeEntities;
         return $this;
     }
@@ -56,23 +62,18 @@ class GetRetweetsOfMe extends Base {
      * @param $includeUserEntities
      * @return $this
      */
-    public function setIncludeUserEntities($includeUserEntities){
+    public function setIncludeUserEntities($includeUserEntities)
+    {
         $this->query['include_user_entities'] = $includeUserEntities;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'retweets_of_me';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

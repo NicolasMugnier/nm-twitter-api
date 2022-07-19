@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NicolasMugnier\Twitter\Api\Favorites;
 
-class PostCreate extends Base
+class PostCreate extends AbstractFavorites
 {
 
     public function setId(int $id): self

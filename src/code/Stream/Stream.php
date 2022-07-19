@@ -1,30 +1,36 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NicolasMugnier\Twitter\Api\Stream;
+
+use NicolasMugnier\Twitter\Api\Statuses\PostRetweet;
+use NicolasMugnier\Twitter\Api\Favorites\PostCreate;
+use NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew;
 
 class Stream
 {
+    protected PostRetweet $status;
 
-    protected $status;
+    protected PostCreate $favorites;
 
-    protected $favorites;
+    protected PostEventsNew $directMessageEvent;
 
-    protected $directMessageEvent;
-
-    protected $bearerToken;
+    protected string $bearerToken;
 
     public function __construct(
-        \NicolasMugnier\Twitter\Api\Statuses\PostRetweet $status,
-        \NicolasMugnier\Twitter\Api\Favorites\PostCreate $favorites,
-        \NicolasMugnier\Twitter\Api\DirectMessages\PostEventsNew $directMessageEvent
+        PostRetweet $status,
+        PostCreate $favorites,
+        PostEventsNew $directMessageEvent,
+        string $bearerToken
     ) {
         $this->status = $status;
         $this->favorites = $favorites;
         $this->directMessageEvent = $directMessageEvent;
-        $this->bearerToken = $_ENV['BEARER_TOKEN'];
+        $this->bearerToken = $bearerToken;
     }
 
-    public function keepAlive($time = 10)
+    public function keepAlive($time = 10): void
     {
         $this->directMessageEvent
             ->setType()
@@ -36,7 +42,7 @@ class Stream
         $this->keepAlive($time * 2);
     }
 
-    public function open()
+    public function open(): mixed
     {
         $sock = fsockopen("ssl://api.twitter.com", 443, $errno, $errstr, 30);
         if (!$sock) die("$errstr ($errno)\n");

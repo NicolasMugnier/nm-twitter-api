@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class PostUpdate
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/post/statuses/update
  */
-class PostUpdate extends Base {
+class PostUpdate extends AbstractStatus
+{
 
     /**
      * @param string $status
      * @return $this
      */
-    public function setStatus($status){
+    public function setStatus($status)
+    {
         $this->query['status'] = $status;
         return $this;
     }
@@ -20,7 +22,8 @@ class PostUpdate extends Base {
      * @param int $id
      * @return $this
      */
-    public function setInReplyToStatusId($id){
+    public function setInReplyToStatusId($id)
+    {
         $this->query['in_reply_to_status_id'] = $id;
         return $this;
     }
@@ -29,7 +32,8 @@ class PostUpdate extends Base {
      * @param boolean $possiblySensitive
      * @return $this
      */
-    public function setPossiblySensitive($possiblySensitive){
+    public function setPossiblySensitive($possiblySensitive)
+    {
         $this->query['possibly_sensitive'] = $possiblySensitive;
         return $this;
     }
@@ -38,7 +42,8 @@ class PostUpdate extends Base {
      * @param float $lat
      * @return $this
      */
-    public function setLat($lat){
+    public function setLat($lat)
+    {
         $this->query['lat'] = $lat;
         return $this;
     }
@@ -47,7 +52,8 @@ class PostUpdate extends Base {
      * @param float $long
      * @return $this
      */
-    public function setLong($long){
+    public function setLong($long)
+    {
         $this->query['long'] = $long;
         return $this;
     }
@@ -56,7 +62,8 @@ class PostUpdate extends Base {
      * @param string $placeId
      * @return $this
      */
-    public function setPlaceId($placeId){
+    public function setPlaceId($placeId)
+    {
         $this->query['place_id'] = $placeId;
         return $this;
     }
@@ -65,7 +72,8 @@ class PostUpdate extends Base {
      * @param boolean $displayCoordinates
      * @return $this
      */
-    public function setDisplayCoordinates($displayCoordinates){
+    public function setDisplayCoordinates($displayCoordinates)
+    {
         $this->query['display_coordinates'] = $displayCoordinates;
         return $this;
     }
@@ -74,7 +82,8 @@ class PostUpdate extends Base {
      * @param boolean $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
@@ -83,22 +92,18 @@ class PostUpdate extends Base {
      * @param int $mediaIds
      * @return $this
      */
-    public function setMediaIds($mediaIds){
+    public function setMediaIds($mediaIds)
+    {
         $this->query['media_ids'] = $mediaIds;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod(){
+    public function getHttpMethod(): string
+    {
         return 'POST';
     }
 
-    /**
-     * @return string
-     */
-    function getOperation()
+    function getOperation(): string
     {
         return 'update';
     }

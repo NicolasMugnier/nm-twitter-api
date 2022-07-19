@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class PostDestroy
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/post/statuses/destroy/%3Aid
  */
-class PostDestroy extends Base {
+class PostDestroy extends AbstractStatus
+{
 
     /**
      * @param $id
      * @return $this
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->query['id'] = $id;
         return $this;
     }
@@ -20,23 +22,18 @@ class PostDestroy extends Base {
      * @param $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'destroy';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

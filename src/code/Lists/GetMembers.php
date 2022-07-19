@@ -1,28 +1,18 @@
-<?php namespace NicolasMugnier\Twitter\Api\Lists;
+<?php
 
-/**
- * Class GetMembers
- *
- * @package   NicolasMugnier\Twitter\Api\Lists
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class GetMembers extends Base {
+declare(strict_types=1);
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+namespace NicolasMugnier\Twitter\Api\Lists;
+
+class GetMembers extends Base
+{
+    public function getOperation(): string
     {
         return 'members';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }
-
 }

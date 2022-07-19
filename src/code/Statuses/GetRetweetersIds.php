@@ -1,51 +1,38 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+declare(strict_types=1);
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetRetweetersIds
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/retweeters/ids
  */
-class GetRetweetersIds extends Base {
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id){
+class GetRetweetersIds extends AbstractStatus
+{
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param $cursor
-     * @return $this
-     */
-    public function setCursor($cursor){
+    public function setCursor($cursor): self
+    {
         $this->query['cursor'] = $cursor;
         return $this;
     }
 
-    /**
-     * @param $stringifyIds
-     * @return $this
-     */
-    public function setStringifyIds($stringifyIds){
+    public function setStringifyIds($stringifyIds): self
+    {
         $this->query['stringify_ids'] = $stringifyIds;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'retweeters/ids';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

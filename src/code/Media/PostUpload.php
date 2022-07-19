@@ -1,51 +1,38 @@
-<?php namespace NicolasMugnier\Twitter\Api\Media;
+<?php
+
+declare(strict_types=1);
+
+namespace NicolasMugnier\Twitter\Api\Media;
 
 /**
- * Class PostUpload
- * @package NicolasMugnier\Twitter\Api\Media
  * @link https://dev.twitter.com/rest/reference/post/media/upload
  */
-class PostUpload extends Base {
-
-    /**
-     * @param $media
-     * @return $this
-     */
-    public function setMedia($media){
+class PostUpload extends AbstractMedia
+{
+    public function setMedia(string $media): self
+    {
         $this->multipart['media'] = $media;
         return $this;
     }
 
-    /**
-     * @param $mediaData
-     * @return $this
-     */
-    public function setMediaData($mediaData){
+    public function setMediaData(string $mediaData): self
+    {
         $this->multipart['media_data'] = $mediaData;
         return $this;
     }
 
-    /**
-     * @param $additionalOwners
-     * @return $this
-     */
-    public function setAdditionalOwners($additionalOwners){
+    public function setAdditionalOwners($additionalOwners): self
+    {
         $this->query['additional_owners'] = $additionalOwners;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'upload';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

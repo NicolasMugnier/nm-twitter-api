@@ -1,62 +1,42 @@
-<?php namespace NicolasMugnier\Twitter\Api\Collections;
+<?php
 
-/**
- * Class PostCreate
- *
- * @package   NicolasMugnier\Twitter\Api\Collections
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class PostCreate extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name){
+namespace NicolasMugnier\Twitter\Api\Collections;
+
+class PostCreate extends AbstractCollection
+{
+
+    public function setName(string $name): self
+    {
         $this->query['name'] = $name;
         return $this;
     }
 
-    /**
-     * @param string $description
-     * @return $this
-     */
-    public function setDescription($description){
+    public function setDescription(string $description): self
+    {
         $this->query['description'] = $description;
         return $this;
     }
 
-    /**
-     * @param string $url
-     * @return $this
-     */
-    public function setUrl($url){
+    public function setUrl(string $url): self
+    {
         $this->query['url'] = $url;
         return $this;
     }
 
-    /**
-     * @param string $timelineOrder
-     * @return $this
-     */
-    public function setTimelineOrder($timelineOrder){
+    public function setTimelineOrder(string $timelineOrder): self
+    {
         $this->query['timeline_order'] = $timelineOrder;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    function getOperation()
+    function getOperation(): string
     {
         return 'create';
     }
 
-    /**
-     * @return string
-     */
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'POST';
     }

@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetShow
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/show/%3Aid
  */
-class GetShow extends Base {
+class GetShow extends AbstractStatus
+{
 
     /**
      * @param $id
      * @return $this
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->query['id'] = $id;
         return $this;
     }
@@ -20,7 +22,8 @@ class GetShow extends Base {
      * @param $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_iser'] = $trimUser;
         return $this;
     }
@@ -29,7 +32,8 @@ class GetShow extends Base {
      * @param $includeMyRetweet
      * @return $this
      */
-    public function setIncludeMyRetweet($includeMyRetweet){
+    public function setIncludeMyRetweet($includeMyRetweet)
+    {
         $this->query['include_my_retweet'] = $includeMyRetweet;
         return $this;
     }
@@ -38,23 +42,18 @@ class GetShow extends Base {
      * @param $includeEntities
      * @return $this
      */
-    public function setIncludeEntities($includeEntities){
+    public function setIncludeEntities($includeEntities)
+    {
         $this->query['include_entities'] = $includeEntities;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'show';
     }
 
-    /**
-     * @return string
-     */
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'GET';
     }

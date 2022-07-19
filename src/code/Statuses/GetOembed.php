@@ -1,123 +1,86 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+declare(strict_types=1);
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class PostOembed
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/oembed
  */
-class PostOembed extends Base {
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id){
+class PostOembed extends AbstractStatus
+{
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param $url
-     * @return $this
-     */
-    public function setUrl($url){
+    public function setUrl(string $url): self
+    {
         $this->query['url'] = $url;
         return $this;
     }
 
-    /**
-     * @param $maxWidth
-     * @return $this
-     */
-    public function setMaxWidth($maxWidth){
+    public function setMaxWidth($maxWidth): self
+    {
         $this->query['maxwidth'] = $maxWidth;
         return $this;
     }
 
-    /**
-     * @param $hideMedia
-     * @return $this
-     */
-    public function setHideMedia($hideMedia){
+    public function setHideMedia($hideMedia): self
+    {
         $this->query['hide_media'] = $hideMedia;
         return $this;
     }
 
-    /**
-     * @param $hideThread
-     * @return $this
-     */
-    public function setHideThread($hideThread){
+    public function setHideThread($hideThread): self
+    {
         $this->query['hide_thread'] = $hideThread;
         return $this;
     }
 
-    /**
-     * @param $omitScript
-     * @return $this
-     */
-    public function setOmitScript($omitScript){
+    public function setOmitScript($omitScript): self
+    {
         $this->query['omit_script'] = $omitScript;
         return $this;
     }
 
-    /**
-     * @param $align
-     * @return $this
-     */
-    public function setAlign($align){
+    public function setAlign($align): self
+    {
         $this->query['align'] = $align;
         return $this;
     }
 
-    /**
-     * @param $related
-     * @return $this
-     */
-    public function setRelated($related){
+    public function setRelated($related): self
+    {
         $this->query['related'] = $related;
         return $this;
     }
 
-    /**
-     * @param $lang
-     * @return $this
-     */
-    public function setLang($lang){
+    public function setLang($lang): self
+    {
         $this->query['lang'] = $lang;
         return $this;
     }
 
-    /**
-     * @param $widgetType
-     * @return $this
-     */
-    public function setWidgetType($widgetType){
+    public function setWidgetType($widgetType): self
+    {
         $this->query['widget_type'] = $widgetType;
         return $this;
     }
 
-    /**
-     * @param $hideTweet
-     * @return $this
-     */
-    public function setHideTweet($hideTweet){
+    public function setHideTweet($hideTweet): self
+    {
         $this->query['hide_tweet'] = $hideTweet;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'oembed';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

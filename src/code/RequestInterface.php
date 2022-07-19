@@ -1,25 +1,25 @@
-<?php namespace NicolasMugnier\Twitter\Api;
+<?php
 
-/**
- * Interface RequestInterface
- * @package Twitter\Api
- */
-interface RequestInterface {
+declare(strict_types=1);
 
-    function getOperation();
+namespace NicolasMugnier\Twitter\Api;
 
-    function getUrl();
+interface RequestInterface
+{
 
-    function getBaseUrl();
+    function getOperation(): string;
 
-    function getHttpMethod();
+    function getUrl(): string;
 
-    function execute();
+    function getBaseUrl(): string;
 
-    function getVersion();
+    function getHttpMethod(): string;
 
-    function getFormat();
+    function execute(): mixed;
 
-    function getResource();
+    function getVersion(): string;
 
+    function getFormat(): string;
+
+    function getResource(): string;
 }

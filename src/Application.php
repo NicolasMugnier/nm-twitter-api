@@ -23,6 +23,7 @@ class Application
             $this->container = new ContainerBuilder();
             $loader = new YamlFileLoader($this->container, new FileLocator(__DIR__));
             $loader->load('config/services.yml');
+            $this->container->compile();
         }
 
         return $this->container;

@@ -1,0 +1,6 @@
+parameters:
+  twitter.api.oauth_consumer_key: '%env(resolve:OAUTH_CONSUMER_KEY)%'
+  twitter.api.oauth_consumer_secret: '%env(resolve:OAUTH_CONSUMER_SECRET)%'
+  twitter.api.oauth_token: '%env(resolve:OAUTH_TOKEN)%'
+  twitter.api.oauth_token_secret: '%env(resolve:OAUTH_TOKEN_SECRET)%'
+  twitter.api.bearer_token: '%env(resolve:BEARER_TOKEN)%'

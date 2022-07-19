@@ -1,35 +1,25 @@
-<?php namespace NicolasMugnier\Twitter\Api\Collections;
+<?php
 
-/**
- * Class GetShow
- *
- * @package   NicolasMugnier\Twitter\Api\Collections
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class GetShow extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id){
+namespace NicolasMugnier\Twitter\Api\Collections;
+
+class GetShow extends AbstractCollection
+{
+
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation(){
+    public function getOperation(): string
+    {
         return 'show';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod(){
+    public function getHttpMethod(): string
+    {
         return 'GET';
     }
-
 }

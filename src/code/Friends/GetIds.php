@@ -1,71 +1,48 @@
-<?php namespace NicolasMugnier\Twitter\Api\Friends;
+<?php
 
-/**
- * Class GetIds
- *
- * @package   NicolasMugnier\Twitter\Api\Friends
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class GetIds extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param int $userId
-     * @return $this
-     */
-    public function setUserId($userId){
+namespace NicolasMugnier\Twitter\Api\Friends;
+
+class GetIds extends AbstractFriends
+{
+
+    public function setUserId(int $userId): self
+    {
         $this->query['user_id'] = $userId;
         return $this;
     }
 
-    /**
-     * @param string $screenName
-     * @return $this
-     */
-    public function setScreenName($screenName){
+    public function setScreenName(string $screenName): self
+    {
         $this->query['screen_name'] = $screenName;
         return $this;
     }
 
-    /**
-     * @param string $cursor
-     * @return $this
-     */
-    public function setCursor($cursor){
+    public function setCursor(string $cursor): self
+    {
         $this->query['cursor'] = $cursor;
         return $this;
     }
 
-    /**
-     * @param array $stringifyIds
-     * @return $this
-     */
-    public function setStringifyIds($stringifyIds){
+    public function setStringifyIds(array $stringifyIds): self
+    {
         $this->query['stringify_ids'] = $stringifyIds;
         return $this;
     }
 
-    /**
-     * @param int $count
-     * @return $this
-     */
-    public function setCount($count){
+    public function setCount(int $count): self
+    {
         $this->query['count'] = $count;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation()
+    public function getOperation(): string
     {
         return 'ids';
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod()
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

@@ -1,62 +1,42 @@
-<?php namespace NicolasMugnier\Twitter\Api\Collections;
+<?php
 
-/**
- * Class PostEntriesAdd
- *
- * @package   NicolasMugnier\Twitter\Api\Collections
- * @author    Nicolas Mugnier <mugnier.nicolas@gmail.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class PostEntriesAdd extends Base {
+declare(strict_types=1);
 
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id){
+namespace NicolasMugnier\Twitter\Api\Collections;
+
+class PostEntriesAdd extends AbstractCollection
+{
+
+    public function setId(int $id): self
+    {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param int $tweetId
-     * @return $this
-     */
-    public function setTweetId($tweetId){
+    public function setTweetId(int $tweetId): self
+    {
         $this->query['tweet_id'] = $tweetId;
         return $this;
     }
 
-    /**
-     * @param string $relativeTo
-     * @return $this
-     */
-    public function setRelativeTo($relativeTo){
+    public function setRelativeTo(string $relativeTo): self
+    {
         $this->query['relative_to'] = $relativeTo;
         return $this;
     }
 
-    /**
-     * @param string $above
-     * @return $this
-     */
-    public function setAbove($above){
+    public function setAbove(string $above): self
+    {
         $this->query['above'] = $above;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    function getOperation()
+    function getOperation(): string
     {
         return 'entries/add';
     }
 
-    /**
-     * @return string
-     */
-    function getHttpMethod()
+    function getHttpMethod(): string
     {
         return 'POST';
     }

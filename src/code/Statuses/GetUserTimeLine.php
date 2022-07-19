@@ -1,17 +1,19 @@
-<?php namespace NicolasMugnier\Twitter\Api\Statuses;
+<?php
+
+namespace NicolasMugnier\Twitter\Api\Statuses;
 
 /**
- * Class GetUserTimeLine
- * @package NicolasMugnier\Twitter\Api\Statuses
  * @link https://dev.twitter.com/rest/reference/get/statuses/user_timeline
  */
-class GetUserTimeLine extends Base {
+class GetUserTimeLine extends AbstractStatus
+{
 
     /**
      * @param int $userId
      * @return $this
      */
-    public function setUserId($userId){
+    public function setUserId($userId)
+    {
         $this->query['user_id'] = $userId;
         return $this;
     }
@@ -20,7 +22,8 @@ class GetUserTimeLine extends Base {
      * @param string $screenName
      * @return $this
      */
-    public function setScreenName($screenName){
+    public function setScreenName($screenName)
+    {
         $this->query['screen_name'] = $screenName;
         return $this;
     }
@@ -29,7 +32,8 @@ class GetUserTimeLine extends Base {
      * @param int $sinceId
      * @return $this
      */
-    public function setSinceId($sinceId){
+    public function setSinceId($sinceId)
+    {
         $this->query['since_id'] = $sinceId;
         return $this;
     }
@@ -38,7 +42,8 @@ class GetUserTimeLine extends Base {
      * @param int $count
      * @return $this
      */
-    public function setCount($count){
+    public function setCount($count)
+    {
         $this->query['count'] = $count;
         return $this;
     }
@@ -47,7 +52,8 @@ class GetUserTimeLine extends Base {
      * @param int $maxId
      * @return $this
      */
-    public function setMaxId($maxId){
+    public function setMaxId($maxId)
+    {
         $this->query['max_id'] = $maxId;
         return $this;
     }
@@ -56,7 +62,8 @@ class GetUserTimeLine extends Base {
      * @param boolean $trimUser
      * @return $this
      */
-    public function setTrimUser($trimUser){
+    public function setTrimUser($trimUser)
+    {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
@@ -65,7 +72,8 @@ class GetUserTimeLine extends Base {
      * @param boolean $excludeReplies
      * @return $this
      */
-    public function setExcludeReplies($excludeReplies){
+    public function setExcludeReplies($excludeReplies)
+    {
         $this->query['exclude_replies'] = $excludeReplies;
         return $this;
     }
@@ -74,7 +82,8 @@ class GetUserTimeLine extends Base {
      * @param boolean $contributorDetails
      * @return $this
      */
-    public function setContributorDetails($contributorDetails){
+    public function setContributorDetails($contributorDetails)
+    {
         $this->query['contributor_details'] = $contributorDetails;
         return $this;
     }
@@ -83,25 +92,20 @@ class GetUserTimeLine extends Base {
      * @param boolean $includeRst
      * @return $this
      */
-    public function setIncludeRst($includeRst){
+    public function setIncludeRst($includeRst)
+    {
         $this->query['include_rst'] = $includeRst;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperation(){
+    public function getOperation(): string
+    {
 
         return 'user_timeline';
-
     }
 
-    /**
-     * @return string
-     */
-    public function getHttpMethod(){
+    public function getHttpMethod(): string
+    {
         return 'GET';
     }
-
 }
