@@ -17,4 +17,4 @@ services:
   GuzzleHttp\Client: ~
 
   NicolasMugnier\Twitter\Api\:
-    resource: '../code/*'
+    resource: '../src/*'

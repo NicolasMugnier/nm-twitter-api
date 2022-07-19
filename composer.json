@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "NicolasMugnier\\Twitter\\Api\\": "src/code/"
+      "NicolasMugnier\\Twitter\\Api\\": "src/"
     }
   }
 }
