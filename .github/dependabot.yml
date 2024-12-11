@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "composer" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "**"
+        update-types: ["version-update:semver-major"]
+    groups:
+        security:
+          applies-to: security-updates
+          dependency-type: production
+        symfony-dependencies:
+          applies-to: version-updates
+          dependency-type: production
+          update-types:
+            - minor
+            - patch
+          patterns:
+            - "symfony/*"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependabot"
+    assignees:
+      - NicolasMugnier
