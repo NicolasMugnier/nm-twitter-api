@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Collections;
 
 class PostCreate extends AbstractCollection
 {
-
     public function setName(string $name): self
     {
         $this->query['name'] = $name;

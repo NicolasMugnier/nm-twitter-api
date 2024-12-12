@@ -6,13 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class PostMembersDestroyAll extends Base
 {
-
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'members/destroy_all';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

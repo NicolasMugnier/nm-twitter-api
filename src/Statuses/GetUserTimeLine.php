@@ -7,92 +7,55 @@ namespace NicolasMugnier\Twitter\Api\Statuses;
  */
 class GetUserTimeLine extends AbstractStatus
 {
-
-    /**
-     * @param int $userId
-     * @return $this
-     */
-    public function setUserId($userId)
+    public function setUserId(int $userId): self
     {
         $this->query['user_id'] = $userId;
         return $this;
     }
 
-    /**
-     * @param string $screenName
-     * @return $this
-     */
-    public function setScreenName($screenName)
+    public function setScreenName(string $screenName): self
     {
         $this->query['screen_name'] = $screenName;
         return $this;
     }
 
-    /**
-     * @param int $sinceId
-     * @return $this
-     */
-    public function setSinceId($sinceId)
+    public function setSinceId(int $sinceId): self
     {
         $this->query['since_id'] = $sinceId;
         return $this;
     }
 
-    /**
-     * @param int $count
-     * @return $this
-     */
-    public function setCount($count)
+    public function setCount(int $count): self
     {
         $this->query['count'] = $count;
         return $this;
     }
 
-    /**
-     * @param int $maxId
-     * @return $this
-     */
-    public function setMaxId($maxId)
+    public function setMaxId(int $maxId): self
     {
         $this->query['max_id'] = $maxId;
         return $this;
     }
 
-    /**
-     * @param boolean $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser)
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @param boolean $excludeReplies
-     * @return $this
-     */
-    public function setExcludeReplies($excludeReplies)
+    public function setExcludeReplies(bool $excludeReplies): self
     {
         $this->query['exclude_replies'] = $excludeReplies;
         return $this;
     }
 
-    /**
-     * @param boolean $contributorDetails
-     * @return $this
-     */
-    public function setContributorDetails($contributorDetails)
+    public function setContributorDetails(bool $contributorDetails): self
     {
         $this->query['contributor_details'] = $contributorDetails;
         return $this;
     }
 
-    /**
-     * @param boolean $includeRst
-     * @return $this
-     */
-    public function setIncludeRst($includeRst)
+    public function setIncludeRst(bool $includeRst): self
     {
         $this->query['include_rst'] = $includeRst;
         return $this;
@@ -100,7 +63,6 @@ class GetUserTimeLine extends AbstractStatus
 
     public function getOperation(): string
     {
-
         return 'user_timeline';
     }
 

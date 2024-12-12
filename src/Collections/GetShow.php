@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Collections;
 
 class GetShow extends AbstractCollection
 {
-
     public function setId(int $id): self
     {
         $this->query['id'] = $id;

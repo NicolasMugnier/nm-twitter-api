@@ -7,62 +7,37 @@ namespace NicolasMugnier\Twitter\Api\Statuses;
  */
 class GetRetweetsOfMe extends AbstractStatus
 {
-
-    /**
-     * @param $count
-     * @return $this
-     */
-    public function setCount($count)
+    public function setCount(int $count): self
     {
         $this->query['count'] = $count;
         return $this;
     }
 
-    /**
-     * @param $sinceId
-     * @return $this
-     */
-    public function setSinceId($sinceId)
+    public function setSinceId(int $sinceId): self
     {
         $this->query['since_id'] = $sinceId;
         return $this;
     }
 
-    /**
-     * @param $maxId
-     * @return $this
-     */
-    public function setMaxId($maxId)
+    public function setMaxId(int $maxId): self
     {
         $this->query['max_id'] = $maxId;
         return $this;
     }
 
-    /**
-     * @param $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser)
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @param $includeEntities
-     * @return $this
-     */
-    public function setIncludeEntities($includeEntities)
+    public function setIncludeEntities(bool $includeEntities): self
     {
         $this->query['include_entities'] = $includeEntities;
         return $this;
     }
 
-    /**
-     * @param $includeUserEntities
-     * @return $this
-     */
-    public function setIncludeUserEntities($includeUserEntities)
+    public function setIncludeUserEntities(bool $includeUserEntities): self
     {
         $this->query['include_user_entities'] = $includeUserEntities;
         return $this;

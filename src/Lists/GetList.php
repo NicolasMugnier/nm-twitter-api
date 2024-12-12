@@ -4,32 +4,19 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class GetList extends Base
 {
-
-    /**
-     * @param int $userId
-     * @return $this
-     */
-    public function setUserId($userId)
+    public function setUserId(int $userId): self
     {
         $this->query['user_id'] = $userId;
         return $this;
     }
 
-    /**
-     * @param string $screenName
-     * @return $this
-     */
-    public function setScreenName($screenName)
+    public function setScreenName(string $screenName): self
     {
         $this->query['screen_name'] = $screenName;
         return $this;
     }
 
-    /**
-     * @param string $reverse
-     * @return $this
-     */
-    public function setReverse($reverse)
+    public function setReverse(bool $reverse): self
     {
         $this->query['reverse'] = $reverse;
         return $this;

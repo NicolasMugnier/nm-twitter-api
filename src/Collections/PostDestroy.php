@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Collections;
 
 class PostDestroy extends AbstractCollection
 {
-
     public function setId(int $id): self
     {
         $this->query['id'] = $id;

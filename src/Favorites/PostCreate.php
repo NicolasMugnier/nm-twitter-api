@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Favorites;
 
 class PostCreate extends AbstractFavorites
 {
-
     public function setId(int $id): self
     {
         $this->query['id'] = $id;

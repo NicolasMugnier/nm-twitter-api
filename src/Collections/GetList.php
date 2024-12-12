@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Collections;
 
 class GetList extends AbstractCollection
 {
-
     public function setUserId(string $userId): self
     {
         $this->query['user_id'] = $userId;

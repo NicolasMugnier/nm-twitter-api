@@ -6,12 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class PostMembersCreate extends Base
 {
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'members/create';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

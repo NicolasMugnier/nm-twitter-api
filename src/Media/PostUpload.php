@@ -21,7 +21,7 @@ class PostUpload extends AbstractMedia
         return $this;
     }
 
-    public function setAdditionalOwners($additionalOwners): self
+    public function setAdditionalOwners(string $additionalOwners): self
     {
         $this->query['additional_owners'] = $additionalOwners;
         return $this;

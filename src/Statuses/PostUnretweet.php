@@ -7,22 +7,13 @@ namespace NicolasMugnier\Twitter\Api\Statuses;
  */
 class PostUnretweet extends AbstractStatus
 {
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
+    public function setId(int $id): self
     {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser)
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;

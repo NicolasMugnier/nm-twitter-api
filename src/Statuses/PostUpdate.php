@@ -7,92 +7,55 @@ namespace NicolasMugnier\Twitter\Api\Statuses;
  */
 class PostUpdate extends AbstractStatus
 {
-
-    /**
-     * @param string $status
-     * @return $this
-     */
-    public function setStatus($status)
+    public function setStatus(string $status): self
     {
         $this->query['status'] = $status;
         return $this;
     }
 
-    /**
-     * @param int $id
-     * @return $this
-     */
-    public function setInReplyToStatusId($id)
+    public function setInReplyToStatusId(int $id): self
     {
         $this->query['in_reply_to_status_id'] = $id;
         return $this;
     }
 
-    /**
-     * @param boolean $possiblySensitive
-     * @return $this
-     */
-    public function setPossiblySensitive($possiblySensitive)
+    public function setPossiblySensitive(bool $possiblySensitive): self
     {
         $this->query['possibly_sensitive'] = $possiblySensitive;
         return $this;
     }
 
-    /**
-     * @param float $lat
-     * @return $this
-     */
-    public function setLat($lat)
+    public function setLat(float $lat): self
     {
         $this->query['lat'] = $lat;
         return $this;
     }
 
-    /**
-     * @param float $long
-     * @return $this
-     */
-    public function setLong($long)
+    public function setLong(float $long): self
     {
         $this->query['long'] = $long;
         return $this;
     }
 
-    /**
-     * @param string $placeId
-     * @return $this
-     */
-    public function setPlaceId($placeId)
+    public function setPlaceId(int $placeId): self
     {
         $this->query['place_id'] = $placeId;
         return $this;
     }
 
-    /**
-     * @param boolean $displayCoordinates
-     * @return $this
-     */
-    public function setDisplayCoordinates($displayCoordinates)
+    public function setDisplayCoordinates(bool $displayCoordinates): self
     {
         $this->query['display_coordinates'] = $displayCoordinates;
         return $this;
     }
 
-    /**
-     * @param boolean $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser)
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @param int $mediaIds
-     * @return $this
-     */
-    public function setMediaIds($mediaIds)
+    public function setMediaIds(string $mediaIds): self
     {
         $this->query['media_ids'] = $mediaIds;
         return $this;

@@ -9,7 +9,6 @@ namespace NicolasMugnier\Twitter\Api\DirectMessages;
  */
 class PostEventsNew extends AbstractDirectMessage
 {
-
     public function setType(): self
     {
         $this->body['json']['event']['type'] = 'message_create';

@@ -9,6 +9,9 @@ use GuzzleHttp\Exception\RequestException;
 
 abstract class AbstractMedia extends Request
 {
+    /**
+     * @var array<mixed>
+     */
     protected array $multipart = [];
 
     public function getResource(): string
@@ -46,9 +49,8 @@ abstract class AbstractMedia extends Request
         return rawurlencode(base64_encode(hash_hmac('SHA1', $signatureBaseString, $this->getSigninKey(), true)));
     }
 
-    public function execute()
+    public function execute(): mixed
     {
-
         try {
 
             $method = strtolower($this->getHttpMethod());
@@ -79,7 +81,7 @@ abstract class AbstractMedia extends Request
             $errorMessage .= $e->getRequest();
             if ($e->hasResponse()) {
                 $errorMessage .= '----------[RESPONSE]----------' . "\n";
-                $errorMessage .= $e->getResponse() . "\n";
+                $errorMessage .= $e->getResponse() ?? '' . "\n";
             }
             echo $errorMessage;
             die();

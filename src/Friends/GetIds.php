@@ -6,7 +6,6 @@ namespace NicolasMugnier\Twitter\Api\Friends;
 
 class GetIds extends AbstractFriends
 {
-
     public function setUserId(int $userId): self
     {
         $this->query['user_id'] = $userId;
@@ -25,7 +24,7 @@ class GetIds extends AbstractFriends
         return $this;
     }
 
-    public function setStringifyIds(array $stringifyIds): self
+    public function setStringifyIds(bool $stringifyIds): self
     {
         $this->query['stringify_ids'] = $stringifyIds;
         return $this;

@@ -6,12 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class GetStatuses extends Base
 {
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'statuses';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

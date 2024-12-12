@@ -14,15 +14,21 @@ abstract class Request implements RequestInterface
 
     private Client $client;
 
+    /**
+     * @var array<string,mixed> $query
+     */
     protected array $query = [];
 
+    /**
+     * @var array<mixed> $body
+     */
     protected array $body = [];
 
     private string $oauthConsumerKey;
 
     private string $oauthConsumerSecret;
 
-    private string $oauthNonce;
+    private ?string $oauthNonce = null;
 
     private string $oauthToken;
 
@@ -32,7 +38,7 @@ abstract class Request implements RequestInterface
 
     private string $defaultFormat;
 
-    protected int $timestamp;
+    protected ?int $timestamp = null;
 
     public function getClient(): Client
     {
@@ -142,7 +148,6 @@ abstract class Request implements RequestInterface
      */
     protected function getOAuthSignature(): string
     {
-
         $params = [];
         foreach ($this->query as $param => $value) {
 
@@ -170,9 +175,8 @@ abstract class Request implements RequestInterface
         return rawurlencode($this->getOAuthConsumerSecret()) . '&' . rawurlencode($this->getOAuthTokenSecret());
     }
 
-    public function execute()
+    public function execute(): mixed
     {
-
         try {
 
             $method = strtolower($this->getHttpMethod());
@@ -202,7 +206,7 @@ abstract class Request implements RequestInterface
             $errorMessage .= $e->getRequest()->getBody();
             if ($e->hasResponse()) {
                 $errorMessage .= '----------[RESPONSE]----------' . "\n";
-                $errorMessage .= $e->getResponse()->getBody() . "\n";
+                $errorMessage .= $e->getResponse()?->getBody() . "\n";
             }
             throw new \Exception($errorMessage);
         }

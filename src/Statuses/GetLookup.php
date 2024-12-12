@@ -15,19 +15,19 @@ class GetLookup extends AbstractStatus
         return $this;
     }
 
-    public function setIncludeEntities($includeEntities): self
+    public function setIncludeEntities(bool $includeEntities): self
     {
         $this->query['include_entities'] = $includeEntities;
         return $this;
     }
 
-    public function setTrimUser($trimUser): self
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    public function setMap($map): self
+    public function setMap(bool $map): self
     {
         $this->query['map'] = $map;
         return $this;

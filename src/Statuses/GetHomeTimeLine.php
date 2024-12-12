@@ -24,25 +24,25 @@ class GetHomeTimeLine extends AbstractStatus
         return $this;
     }
 
-    public function setTrimUser($trimUser): self
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_user'] = $trimUser;
         return $this;
     }
 
-    public function setExcludeReplies($excludeReplies): self
+    public function setExcludeReplies(bool $excludeReplies): self
     {
         $this->query['exclude_replies'] = $excludeReplies;
         return $this;
     }
 
-    public function setContributorDetails($contributorDetails): self
+    public function setContributorDetails(bool $contributorDetails): self
     {
         $this->query['contributor_details'] = $contributorDetails;
         return $this;
     }
 
-    public function setIncludeEntities($includeEntities): self
+    public function setIncludeEntities(bool $includeEntities): self
     {
         $this->query['include_entities'] = $includeEntities;
         return $this;

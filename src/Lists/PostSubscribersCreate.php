@@ -6,13 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class PostSubscribersCreate extends Base
 {
-
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'subscribers/create';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

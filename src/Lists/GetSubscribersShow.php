@@ -6,12 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class GetSubscribersShow extends Base
 {
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'subscribers/show';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'GET';
     }

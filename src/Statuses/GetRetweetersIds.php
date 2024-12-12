@@ -15,13 +15,13 @@ class GetRetweetersIds extends AbstractStatus
         return $this;
     }
 
-    public function setCursor($cursor): self
+    public function setCursor(int $cursor): self
     {
         $this->query['cursor'] = $cursor;
         return $this;
     }
 
-    public function setStringifyIds($stringifyIds): self
+    public function setStringifyIds(bool $stringifyIds): self
     {
         $this->query['stringify_ids'] = $stringifyIds;
         return $this;

@@ -7,42 +7,25 @@ namespace NicolasMugnier\Twitter\Api\Statuses;
  */
 class GetShow extends AbstractStatus
 {
-
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
+    public function setId(int $id): self
     {
         $this->query['id'] = $id;
         return $this;
     }
 
-    /**
-     * @param $trimUser
-     * @return $this
-     */
-    public function setTrimUser($trimUser)
+    public function setTrimUser(bool $trimUser): self
     {
         $this->query['trim_iser'] = $trimUser;
         return $this;
     }
 
-    /**
-     * @param $includeMyRetweet
-     * @return $this
-     */
-    public function setIncludeMyRetweet($includeMyRetweet)
+    public function setIncludeMyRetweet(bool $includeMyRetweet): self
     {
         $this->query['include_my_retweet'] = $includeMyRetweet;
         return $this;
     }
 
-    /**
-     * @param $includeEntities
-     * @return $this
-     */
-    public function setIncludeEntities($includeEntities)
+    public function setIncludeEntities(bool $includeEntities): self
     {
         $this->query['include_entities'] = $includeEntities;
         return $this;

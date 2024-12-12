@@ -6,13 +6,12 @@ namespace NicolasMugnier\Twitter\Api\Lists;
 
 class PostUpdate extends Base
 {
-
-    function getOperation(): string
+    public function getOperation(): string
     {
         return 'update';
     }
 
-    function getHttpMethod(): string
+    public function getHttpMethod(): string
     {
         return 'POST';
     }

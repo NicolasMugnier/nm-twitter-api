@@ -30,11 +30,11 @@ class Stream
         $this->bearerToken = $bearerToken;
     }
 
-    public function keepAlive($time = 10): void
+    public function keepAlive(int $time = 10): void
     {
         $this->directMessageEvent
             ->setType()
-            ->setRecipientId($_ENV['ACCOUNT_ID'])
+            ->setRecipientId((int) $_ENV['ACCOUNT_ID'])
             ->setMessageData('Try to connect to stream ' . $time / 10 . ' attempt')
             ->execute();
         $this->open();
@@ -47,18 +47,20 @@ class Stream
         $sock = fsockopen("ssl://api.twitter.com", 443, $errno, $errstr, 30);
         if (!$sock) die("$errstr ($errno)\n");
         fwrite($sock, "GET /2/tweets/search/stream HTTP/1.0\r\nHost: api.twitter.com\r\nAccept: */*\r\nAuthorization: Bearer $this->bearerToken\r\n\r\n");
+        $decodedMessage = '';
         while (!feof($sock)) {
-            $message = fgets($sock, 4096);
+            $message = (string) \fgets($sock, 4096);
             echo $message . "\n";
-            $message = json_decode($message);
-            if (isset($message->data)) {
-                $id = $message->data->id;
-                $text = $message->data->text;
+            /** @var \StdClass $decodedMessage */
+            $decodedMessage = \json_decode($message);
+            if (isset($decodedMessage->data)) {
+                $id = $decodedMessage->data->id;
+                $text = $decodedMessage->data->text;
                 $this->favorites->setId($id)->execute();
                 $this->status->setId($id)->execute();
             }
         }
         fclose($sock);
-        return $message;
+        return $decodedMessage;
     }
 }
